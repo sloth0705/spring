@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+			$(function() {
+				$('#btnUser1s').click(function() {
+					$.ajax({
+						url: '/user1',
+						type: 'GET',
+						dataType: 'json',
+						success: function(data) {
+							console.log(data);							
+						}
+					});
+				});
+				$('#btnUser1').click(function() {
+					$.ajax({
+						url: '/user1/a101',
+						type: 'GET',
+						dataType: 'json',
+						success: function(data) {
+							console.log(data);							
+						}
+					});
+				});
+				$('#btnUser1Register').click(function() {
+					const jsonData = {
+						id: 'a1011',
+						name: '김ㄱ미유신',
+						hp: '010-1111-2222',
+						age: 23
+					}
+					$.ajax({
+						url: '/user1',
+						type: 'POST',
+						dataType: 'json',
+						data: jsonData,
+						success: function(data) {
+							console.log('success');							
+						}
+					});
+				});
+				$('#btnUser1Modify').click(function() {
+					const jsonData = {
+						id: 'a1011',
+						name: '김rla유신',
+						hp: '010-1111-2222',
+						age: 23
+					}
+					$.ajax({
+						url: '/user1',
+						type: 'PUT',
+						dataType: 'json',
+						data: jsonData,
+						success: function(data) {
+							console.log('');							
+						}
+					});
+				});
+				$('#btnUser1Delete').click(function() {
+					$.ajax({
+						url: '/user1/a101',
+						type: 'DELETE',
+						dataType: 'json',
+						success: function(data) {
+							console.log('');							
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h3>Spring REST API</h3>
+		<h4>User1</h4>
+		<button id="btnUser1s">목록</button>
+		<button id="btnUser1">조회</button>
+		<button id="btnUser1Register">등록</button>
+		<button id="btnUser1Modify">수정</button>
+		<button id="btnUser1Delete">삭제</button>
+	</body>
+</html>

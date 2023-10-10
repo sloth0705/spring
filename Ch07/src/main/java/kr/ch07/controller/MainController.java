@@ -37,11 +37,13 @@ public class MainController {
 		model.addAttribute("user4", user4);
 		model.addAttribute("users", users);
 		log.info(user1.toString());
-		return "index";
+		return "/index";
 	}
 	
 	@GetMapping("/include")
-	public String include() {
+	public String include(String name, int age) {
+		log.info("name : " + name);
+		log.info("age : " + age);
 		return "/include";
 	}
 	

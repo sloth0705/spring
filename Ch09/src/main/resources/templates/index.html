@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+</head>
+<body>
+	<h3>Spring Security</h3>
+	<h4>인증 테스트</h4>
+	<th:block sec:authorize="isAnonymous()">
+		<a th:href="@{/user/register}">User Register</a>
+		<a th:href="@{/user/login}">User Login</a>
+	</th:block>
+	<th:block sec:authorize="isAuthenticated()">
+		<a th:href="@{/user/logout}">User Logout</a>
+	</th:block>
+	<h4>인가 테스트</h4>
+	<th:block sec:authorize="hasRole('ADMIN')">
+		<a th:href="@{/admin/index}">ADMIN</a>
+	</th:block>
+	<th:block sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+		<a th:href="@{/manager/index}">MANAGER</a>
+	</th:block>
+</body>
+</html>
