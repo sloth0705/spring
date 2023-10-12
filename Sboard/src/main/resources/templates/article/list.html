@@ -16,28 +16,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>제목입니다.</td>
-                            <td>길동이</td>
-                            <td>12</td>
-                            <td>2023-10-12</td>
+                        <tr th:each="article:${pageArticle.content}">
+                            <td>[[${article.no}]]</td>
+                            <td>[[${article.title}]]</td>
+                            <td>[[${article.writer}]]</td>
+                            <td>[[${article.hit}]]</td>
+                            <td>[[${article.rdate}]]</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목입니다.</td>
-                            <td>길동이</td>
-                            <td>12</td>
-                            <td>2023-10-12</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>제목입니다.</td>
-                            <td>길동이</td>
-                            <td>12</td>
-                            <td>2023-10-12</td>
-                        </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -49,17 +34,18 @@
         <div class="text-right">
             <a th:href="@{/article/register}" type="button"  class="btn btn-primary">글쓰기</a>
         </div>
-    </div>
-    <div class="text-center">
-        <ul class="pagination">
-            <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li>
-            <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a href="#">1</a></li>
-            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">2</a></li>
-            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">3</a></li>
-            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">4</a></li>
-            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">5</a></li>
-            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a href="#">6</a></li>
-            <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next"><a href="#">Next</a></li>
-        </ul>
+        <div class="text-center">
+            <ul class="pagination">
+                <li th:if="${pageArticle.hasPrevious}" class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                    <a href="#">이전</a>
+                </li>
+                <th:block th:each="num: ${#numbers.sequence(1, pageArticle.totalPages)}">
+                    <li class="paginate_button" aria-controls="dataTables-example" tabindex="0"><a th:href="@{/article/list(cate=free,pg=${num})}">[[${num}]]</a></li>
+                </th:block>
+                <li th:if="${pageArticle.hasNext}" class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                    <a href="#">다음</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </html>
