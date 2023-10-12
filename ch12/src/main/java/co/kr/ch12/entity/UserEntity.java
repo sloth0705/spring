@@ -1,6 +1,8 @@
-package kr.ch11.entity;
+package co.kr.ch12.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Map;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @Getter
 @Setter
@@ -22,7 +26,7 @@ import lombok.ToString;
 @Builder
 @Entity
 @Table(name = "User")
-public class UserEntity {
+public class UserEntity implements OAuth2User {
 	@Id
 	private String uid;
 	private String pass;
@@ -32,4 +36,19 @@ public class UserEntity {
 	private String role;
 	@CreationTimestamp
 	private LocalDateTime regDate;
+
+	// 추가 필드
+	private String provider;
+	private String nickname;
+	private String email;
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		return null;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
 }
