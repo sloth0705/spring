@@ -2,7 +2,6 @@ package kr.co.sboard.controller.user;
 
 import kr.co.sboard.dto.UserDTO;
 import kr.co.sboard.entity.TermsEntity;
-import kr.co.sboard.entity.UserEntity;
 import kr.co.sboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
